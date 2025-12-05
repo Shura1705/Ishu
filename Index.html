@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Happy Birthday Ishika 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A romantic birthday surprise website for my Bestii Ishika (Ishu) 💕.">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Pacifico&display=swap" rel="stylesheet" />
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+
+    :root{
+      --bg1:#ff9a9e;
+      --bg3:#fbc2eb;
+      --bg4:#a18cd1;
+      --primary:#ff6fb5;
+      --text-main:#281827;
+      --text-soft:#5b4258;
+    }
+
+    body{
+      font-family:"Poppins",sans-serif;
+      min-height:100vh;
+      background:radial-gradient(circle at top left,var(--bg1),var(--bg3),var(--bg4));
+      background-size:200% 200%;
+      animation:bgMove 18s infinite alternate ease-in-out;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      padding:18px 8px 26px;
+      color:var(--text-main);
+      overflow-x:hidden;
+      overflow-y:auto;
+      position:relative;
+    }
+    @keyframes bgMove{
+      0%{background-position:0% 0%;}
+      100%{background-position:100% 100%;}
+    }
+
+    /* floating hearts */
+    .floating-hearts{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:-1;
+      overflow:hidden;
+    }
+    .floating-hearts span{
+      position:absolute;
+      font-size:18px;
+      opacity:0.7;
+      animation:floatHeart 10s linear infinite;
+    }
+    @keyframes floatHeart{
+      0%{transform:translateY(100vh) translateX(0) scale(.6);opacity:0;}
+      15%{opacity:.9;}
+      100%{transform:translateY(-10vh) translateX(40px) scale(1.2);opacity:0;}
+    }
+
+    .container{width:100%;max-width:600px;}
+
+    .card{
+      background:rgba(255,255,255,0.9);
+      border-radius:24px;
+      padding:16px 12px 18px;
+      box-shadow:0 18px 40px rgba(0,0,0,0.28);
+      border:1px solid rgba(255,255,255,0.9);
+      position:relative;
+      overflow:hidden;
+      animation:cardIn 1s ease forwards;
+    }
+    @keyframes cardIn{
+      0%{opacity:0;transform:translateY(30px) scale(.96);}
+      100%{opacity:1;transform:translateY(0) scale(1);}
+    }
+
+    .glow{
+      position:absolute;
+      width:260px;
+      height:260px;
+      border-radius:50%;
+      background:radial-gradient(circle,rgba(255,255,255,.9),transparent);
+      filter:blur(10px);
+      opacity:.6;
+      z-index:-1;
+    }
+    .glow.g1{top:-80px;right:-80px;}
+    .glow.g2{bottom:-90px;left:-80px;}
+
+    /* hide radios */
+    .tab-input{position:absolute;opacity:0;pointer-events:none;}
+
+    .top-bar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:6px;
+      margin-bottom:10px;
+    }
+    .logo{
+      font-family:"Pacifico",cursive;
+      font-size:18px;
+      display:flex;
+      align-items:center;
+      gap:4px;
+    }
+    .logo span{color:#ff3f9f;}
+
+    .nav{
+      display:flex;
+      flex-wrap:wrap;
+      gap:4px;
+      justify-content:flex-end;
+    }
+    .nav-btn{
+      border:none;
+      padding:5px 9px;
+      border-radius:999px;
+      font-size:10px;
+      font-weight:600;
+      background:#ffffff;
+      border:1px solid #ffd6f0;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:3px;
+      white-space:nowrap;
+      transition:background .15s,box-shadow .15s,transform .15s,color .15s;
+      user-select:none;
+    }
+    .nav-btn span.icon{font-size:11px;}
+
+    /* active states based on radio */
+    #tab-home:checked   ~ .top-bar .nav-home,
+    #tab-things:checked ~ .top-bar .nav-things,
+    #tab-story:checked  ~ .top-bar .nav-story,
+    #tab-letter:checked ~ .top-bar .nav-letter,
+    #tab-secret:checked ~ .top-bar .nav-secret{
+      background:linear-gradient(135deg,#ff6fb5,#ff9fd6);
+      color:#fff;
+      border-color:transparent;
+      box-shadow:0 10px 22px rgba(255,111,181,.55);
+      transform:translateY(-1px);
+    }
+
+    .pages{margin-top:8px;}
+
+    .page{
+      display:none;
+      font-size:13px;
+      line-height:1.6;
+      min-height:70vh;
+      animation:pageIn .4s ease forwards;
+    }
+    @keyframes pageIn{
+      0%{opacity:0;transform:translateY(12px);}
+      100%{opacity:1;transform:translateY(0);}
+    }
+
+    /* show one page depending on which tab is checked */
+    #tab-home:checked   ~ .pages .page-home{display:block;}
+    #tab-things:checked ~ .pages .page-things{display:block;}
+    #tab-story:checked  ~ .pages .page-story{display:block;}
+    #tab-letter:checked ~ .pages .page-letter{display:block;}
+    #tab-secret:checked ~ .pages .page-secret{display:block;}
+
+    .hero-title{
+      font-family:"Pacifico",cursive;
+      font-size:26px;
+      text-align:center;
+      background:linear-gradient(120deg,#ff6fb5,#ffd1ff,#ffe66d);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      margin-bottom:6px;
+      white-space:nowrap;
+      overflow:hidden;
+      border-right:2px solid rgba(255,255,255,.9);
+      width:0;
+      margin-left:auto;
+      margin-right:auto;
+      animation:typing 3.5s steps(30,end) .4s forwards,caret .8s step-end infinite;
+    }
+    @keyframes typing{
+      from{width:0;}
+      to{width:100%;}
+    }
+    @keyframes caret{
+      0%,100%{border-right-color:transparent;}
+      50%{border-right-color:rgba(255,255,255,.9);}
+    }
+
+    .pill{
+      display:inline-block;
+      padding:3px 10px;
+      border-radius:999px;
+      font-size:10px;
+      background:#fff;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      margin:0 auto 6px;
+    }
+    .center{text-align:center;}
+    .hero-sub{
+      text-align:center;
+      font-size:14px;
+      color:var(--text-soft);
+      margin-bottom:6px;
+    }
+    .highlight{color:#ff3f9f;font-weight:700;}
+    ul{margin-left:16px;margin-top:4px;}
+    ul li{margin-bottom:4px;}
+
+    .block{
+      background:#fff7fb;
+      border-radius:16px;
+      padding:9px 9px;
+      border:1px solid #ffd0ea;
+      margin-bottom:8px;
+      box-shadow:0 8px 20px rgba(255,111,181,.08);
+    }
+    .letter{
+      background:#fff3fb;
+      border-radius:18px;
+      padding:10px 9px;
+      border:1px dashed #ff96c7;
+    }
+    .sign{
+      text-align:right;
+      font-size:12px;
+      margin-top:10px;
+      font-style:italic;
+    }
+
+    .btn-main,.btn-next{
+      border:none;
+      padding:7px 15px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:600;
+      background:linear-gradient(135deg,#ff6fb5,#ff9fd6);
+      color:#fff;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:5px;
+      box-shadow:0 8px 20px rgba(255,111,181,.45);
+      margin-top:10px;
+      user-select:none;
+    }
+    .btn-next{font-size:11px;padding:6px 12px;}
+
+    .next-wrap{
+      margin-top:10px;
+      text-align:right;
+    }
+
+    /* secret section */
+    .pass-box{
+      margin-top:4px;
+      padding:9px 9px;
+      border-radius:16px;
+      background:#ffffff;
+      border:1px solid #ffd0ea;
+      font-size:12px;
+    }
+    .pass-row{
+      display:flex;
+      gap:6px;
+      margin-top:4px;
+    }
+    .pass-row input{
+      flex:1;
+      border:1px solid rgba(0,0,0,.15);
+      border-radius:999px;
+      padding:6px 9px;
+      font-size:12px;
+      outline:none;
+    }
+    .pass-row button{
+      border-radius:999px;
+      border:none;
+      padding:6px 10px;
+      font-size:11px;
+      font-weight:600;
+      background:linear-gradient(135deg,#ff6fb5,#ff9fd6);
+      color:#fff;
+      cursor:pointer;
+      box-shadow:0 6px 16px rgba(255,111,181,.5);
+    }
+    .pass-msg{
+      margin-top:5px;
+      font-size:11px;
+      min-height:14px;
+    }
+    .pass-msg.ok{color:#0f8f4f;}
+    .pass-msg.err{color:#e63870;}
+
+    .secret-card{
+      margin-top:10px;
+      padding:11px 10px;
+      border-radius:18px;
+      background:linear-gradient(135deg,#1b1020,#3e163d);
+      color:#ffe4fb;
+      border:1px solid rgba(255,255,255,.4);
+      box-shadow:0 18px 36px rgba(10,0,20,.9);
+      cursor:pointer;
+      display:none;
+      font-size:12px;
+    }
+    .secret-title{font-weight:600;margin-bottom:4px;}
+    .secret-hint{font-size:11px;opacity:.85;}
+    .secret-text{
+      margin-top:8px;
+      padding:9px 9px;
+      border-radius:14px;
+      background:rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.4);
+      display:none;
+    }
+
+    footer{
+      margin-top:10px;
+      text-align:center;
+      font-size:11px;
+      color:#452338;
+    }
+    footer span{font-weight:600;}
+
+    @media(max-width:480px){
+      .hero-title{font-size:24px;}
+      .card{padding:14px 10px 16px;}
+    }
+  </style>
+</head>
+<body>
+  <!-- floating hearts -->
+  <div class="floating-hearts" aria-hidden="true">
+    <span style="left:5%;animation-delay:0s;">💗</span>
+    <span style="left:18%;animation-delay:1.2s;">💖</span>
+    <span style="left:35%;animation-delay:2.4s;">💕</span>
+    <span style="left:55%;animation-delay:.8s;">💞</span>
+    <span style="left:75%;animation-delay:3s;">💓</span>
+    <span style="left:90%;animation-delay:4s;">💘</span>
+  </div>
+
+  <div class="container">
+    <div class="card">
+      <div class="glow g1"></div>
+      <div class="glow g2"></div>
+
+      <!-- RADIO TABS (navigation logic) -->
+      <input type="radio" name="tab" id="tab-home"   class="tab-input" checked>
+      <input type="radio" name="tab" id="tab-things" class="tab-input">
+      <input type="radio" name="tab" id="tab-story"  class="tab-input">
+      <input type="radio" name="tab" id="tab-letter" class="tab-input">
+      <input type="radio" name="tab" id="tab-secret" class="tab-input">
+
+      <!-- TOP BAR -->
+      <div class="top-bar">
+        <div class="logo">For <span>Ishu</span> 🫶</div>
+        <div class="nav">
+          <label for="tab-home"   class="nav-btn nav-home"><span class="icon">🏠</span> Home</label>
+          <label for="tab-things" class="nav-btn nav-things"><span class="icon">💕</span> Little</label>
+          <label for="tab-story"  class="nav-btn nav-story"><span class="icon">✨</span> Story</label>
+          <label for="tab-letter" class="nav-btn nav-letter"><span class="icon">💌</span> Letter</label>
+          <label for="tab-secret" class="nav-btn nav-secret"><span class="icon">💝</span> Secret</label>
+        </div>
+      </div>
+
+      <!-- PAGES -->
+      <div class="pages">
+        <!-- HOME -->
+        <section class="page page-home">
+          <div class="center" style="margin-bottom:6px;">
+            <div class="pill">Private Birthday Website • Only for Ishika 🎀</div>
+          </div>
+          <h1 class="hero-title">Happy Birthday Ishika 💖</h1>
+          <p class="hero-sub">
+            To my favourite human, my drama queen, my <span class="highlight">Ishu</span> 🫶✨
+          </p>
+          <p>
+            Aaj ka pura din officially <strong>tumhara</strong> hai 🎂💗  
+            Ye website koi normal “HBD” message nahi,  
+            ek chhota sa <strong>digital surprise</strong> hai – jo hamesha yahi rahega,  
+            jaise tumhari yaadein 😌✨
+          </p>
+          <br/>
+          <p><strong>Andar kya kya milega tumhe 👇</strong></p>
+          <ul>
+            <li>💗 Little Things – chhoti chhoti baatein jo tumhe special banati hain</li>
+            <li>✨ Our Story – thoda flashback & vibe</li>
+            <li>💌 Letter – full dil se birthday message</li>
+            <li>💝 Secret – ek hidden message sirf tumhare liye</li>
+          </ul>
+          <div class="center">
+            <label for="tab-things" class="btn-main">
+              Start the surprise 🎀
+            </label>
+          </div>
+        </section>
+
+        <!-- LITTLE THINGS -->
+        <section class="page page-things">
+          <h2 style="font-size:14px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;color:#7a5068;">
+            Little Things I Love About You 💕
+          </h2>
+
+          <div class="block">
+            <p>
+              Perfect hona zaroori nahi, <strong>real</strong> hona cute hota hai –  
+              aur tum exactly waise hi ho 😌💗  
+              Ye kuch baatein jo tumhe <span class="highlight">“Ishu”</span> banati hain:
+            </p>
+          </div>
+
+          <div class="block">
+            <p>😊 <strong>Your smile</strong><br/>
+              Jab tum genuinely haste ho na, pura day ka stress reset ho jata hai.  
+              Screen chhoti ho sakti hai, lekin tumhari smile ka effect bohot bada hota hai 🌈✨
+            </p>
+          </div>
+
+          <div class="block">
+            <p>🫶🏻 <strong>Your caring nature</strong><br/>
+              Tum khud kitni cheezein handle kar rahi hoti ho,  
+              phir bhi “sab theek hai na?” type care dusron ke liye rakhti ho 💕
+            </p>
+          </div>
+
+          <div class="block">
+            <p>🙈 <strong>Your cute anger</strong><br/>
+              Thoda sa “mat baat karo mujhse”, thoda sa attitude,  
+              phir wahi pyaar wapas – full dangerous combo 😏🔥
+            </p>
+          </div>
+
+          <div class="block">
+            <p>💬 <strong>Our random chats</strong><br/>
+              Kabhi deep talks, kabhi total bakwaas – but har chat ka  
+              apna ek alag comfort hota hai jo har kisi se nahi milta 😄💞
+            </p>
+          </div>
+
+          <div class="block">
+            <p>🌙 <strong>Late night thoughts</strong><br/>
+              Raat me tum online aao ya na aao,  
+              dimag me naam tumhara hi ghoomta rehta hai 🌙🖤
+            </p>
+          </div>
+
+          <div class="block">
+            <p>💖 <strong>You being you</strong><br/>
+              Thoda drama, thoda overthinking, thoda softness –  
+              bas tum jaisi ho, waisi hi sabse zyada precious ho 🤍✨
+            </p>
+          </div>
+
+          <div class="block">
+            <p><strong>Birthday blessings for you 🤍✨</strong></p>
+            <ul>
+              <li>💫 Tumhara dil jitna soft hai, utna hi strong bhi rahe – hamesha.</li>
+              <li>🧿 Negative log & vibes tumse automatically door rahein.</li>
+              <li>🌸 Tumhare efforts ko log genuinely samjhein & value karein.</li>
+              <li>🎓 Jo bhi tum chahti ho – career, peace, love – sab time pe mile.</li>
+              <li>💌 Aur sabse important: tum khud ko kabhi kam mat samajhna.</li>
+            </ul>
+          </div>
+
+          <div class="next-wrap">
+            <label for="tab-story" class="btn-next">
+              Next: Our Story ✨ →
+            </label>
+          </div>
+        </section>
+
+        <!-- STORY -->
+        <section class="page page-story">
+          <h2 style="font-size:14px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;color:#7a5068;">
+            Our Little Story & Vibes ✨
+          </h2>
+
+          <div class="block">
+            <p>
+              Duniya ke liye ye ek normal connection ho sakta hai…  
+              mere liye ye ek <strong>comfort zone</strong> jaisa hai 🥹💗
+            </p>
+          </div>
+
+          <div class="block">
+            <p>🗨️ <strong>When we started talking</strong><br/>
+              Shuru me sab normal tha – thoda casual, thoda random.  
+              Dheere-dheere “Ishika / Ishu” sirf ek naam nahi,  
+              ek favourite notification jaisa feel hone laga 📱💞
+            </p>
+          </div>
+
+          <div class="block">
+            <p>🤭 <strong>Inside jokes & drama</strong><br/>
+              Thoda ignore, thoda late reply, thoda mood swing, thoda care –  
+              ye sab mila ke ek aisi vibe ban gayi jo sirf hum dono samajhte hain 😏🖤
+            </p>
+          </div>
+
+          <div class="block">
+            <p>✨ <strong>Right now</strong><br/>
+              Ab scene simple hai – kahin bhi “Ishu / Ishika” likha dikhta hai,  
+              automatically face pe smile aa jati hai 😌💗  
+              Tum busy ho sakti ho, life alag direction me ho sakti hai,  
+              phir bhi tumhari jagah mere liye alag hi rahegi 🥰
+            </p>
+          </div>
+
+          <div class="block">
+            <p>
+              Bas itna yaad rakhna –  
+              chahe hum kitna bhi kam ya zyada baat karein,  
+              <strong>tum meri life ka beautiful part ho</strong>,  
+              jitna shayad tumhe khud bhi idea nahi 💫🖤
+            </p>
+          </div>
+
+          <div class="next-wrap">
+            <label for="tab-letter" class="btn-next">
+              Next: Letter 💌 →
+            </label>
+          </div>
+        </section>
+
+        <!-- LETTER -->
+        <section class="page page-letter">
+          <h2 style="font-size:14px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;color:#7a5068;">
+            A Birthday Letter For You 💌
+          </h2>
+
+          <div class="letter">
+            Dear <span class="highlight">Ishu</span> 💖,<br/><br/>
+
+            Happy Birthday to the person jiska naam aate hi pura mood soft ho jata hai 😌🫶  
+            Aaj genuinely wish karta hoon ki tumhara saal
+            <strong>safe, peaceful aur khushiyon se full</strong> ho –  
+            sirf social media pe nahi, real life me bhi 🎂✨
+            <br/><br/>
+
+            Kabhi-kabhi tum khud ko underestimate kar deti ho,  
+            lekin meri nazar se tum ek <strong>rare</strong> type ki ho –  
+            jo dil se feel karti hai, logon ke liye overthink karti hai,  
+            phir bhi hasi–mazaak se sab handle karne ki try karti hai 💕
+            <br/><br/>
+
+            I hope is saal tumhe aise log mile jo:<br/>
+            • tumhari vibe samjhein 💫<br/>
+            • tumhari value karein 🧿<br/>
+            • aur tumhe bilkul waise accept karein jaisi tum actually ho –  
+            no mask, no acting, bas real Ishika 😌🤍
+            <br/><br/>
+
+            Aur jab bhi life thodi heavy lage, ya lage ki  
+            “koi nahi samajh raha”, bas itna yaad rakhna 💭👇  
+            kahin na kahin ek banda hai jo genuinely ye chahta hai ki  
+            <strong>tum hamesha safe, happy & smiling raho</strong> 🖤
+            <br/><br/>
+
+            <span class="highlight">
+              Happiest Birthday, Bestii 🥳🎀  
+              Tum ho to vibe hai, warna sab seriously boring lagta hai fr. 😌💗
+            </span>
+
+            <div class="sign">
+              – Made with 💗 & 🖤 by Ritvik
+            </div>
+          </div>
+
+          <div class="next-wrap">
+            <label for="tab-secret" class="btn-next">
+              Next: Secret 💝 →
+            </label>
+          </div>
+        </section>
+
+        <!-- SECRET -->
+        <section class="page page-secret">
+          <h2 style="font-size:14px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;color:#7a5068;">
+            Secret Surprise Just For You 💝
+          </h2>
+
+          <div class="block">
+            <p>
+              Ye page thoda filmy, thoda personal, thoda <strong>sirf tumhare liye</strong> hai 😏💫  
+              Isko aaram se, bina skip kiye padhna – tabhi feel aayega 😌💗
+            </p>
+          </div>
+
+          <div class="pass-box">
+            <p>
+              Pehle prove karo ki tum hi <span class="highlight">real Ishu</span> ho 😌💖<br/>
+              <span style="font-size:11px;">
+                Hint: apna cute sa naam likho 👉 “Ishu” ya “Ishika” 🥺
+              </span>
+            </p>
+            <div class="pass-row">
+              <input type="password" id="secretInput" placeholder="Type here... ✍️">
+              <button id="unlockBtn" type="button">Unlock 💝</button>
+            </div>
+            <div id="passMsg" class="pass-msg"></div>
+          </div>
+
+          <p style="font-size:12px;margin-top:7px;opacity:.9;">
+            🔒 Sahi naam likhne ke baad ek secret card unlock hoga jisme  
+            woh lines hongi jo shayad tumhe kabhi directly nahi boli gayi,  
+            but dil me hammesha rahi hain 🫶✨
+          </p>
+
+          <div id="secretCard" class="secret-card">
+            <div class="secret-title">Your personal 
